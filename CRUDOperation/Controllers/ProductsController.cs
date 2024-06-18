@@ -21,5 +21,27 @@ namespace CRUDOperation.Controllers
         {
             return _productRepository.GetAll();
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Production> Get(int id)
+        {
+            var production = _productRepository.GetById(id);
+            if (production == null)
+            {
+                return NotFound();
+            }
+            return production;
+        }
+
+        [HttpPost]
+        public IActionResult post([FromBody] Production production)
+        {
+            if (production == null)
+            {
+                return BadRequest();
+            }
+            _productRepository.Add(production);
+            return CreatedAtAction(nameof(Get), new { id = production.brand_id }, production);
+        }
     }
 }

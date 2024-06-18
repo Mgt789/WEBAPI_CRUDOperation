@@ -6,8 +6,8 @@ namespace CRUDOperation.Repositories
     public interface IProductRepository
     {
         IEnumerable<Production> GetAll();
-        //Production GetById(int id);
-        //void Add(Production product);
+        Production GetById(int id);
+        void Add(Production product);
         //void Update(Production product);
         //void Delete(int id);
     }
